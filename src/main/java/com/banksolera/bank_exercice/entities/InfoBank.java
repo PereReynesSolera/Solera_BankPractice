@@ -11,7 +11,22 @@ public class InfoBank {
 		this.moneyAccount = moneyAccount;
 		this.accountNum = accountNum;
 	}
-	
+
+	public Double getMoneyAccount() {
+		return moneyAccount;
+	}
+
+	public void setMoneyAccount(Double moneyAccount) {
+		this.moneyAccount = moneyAccount;
+	}
+
+	public String getAccountNum() {
+		return accountNum;
+	}
+
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
 	
 	
 }
