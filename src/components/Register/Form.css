@@ -241,3 +241,15 @@ html {
       margin-top: 1rem;
     }
   }
+
+  .loggeo{
+    width: 10em;
+    height: 3em;
+    font-size: 15px;
+    border-radius: 1em;
+    color: whitesmoke;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    background: transparent;
+  }

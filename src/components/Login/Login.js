@@ -9,6 +9,10 @@ const LoginComponent = () => {
     const naving = () => {
         navigate("/principal");
     }
+    
+    const travel = () => {
+        navigate("/");
+    }
 
     return (
         <div className="container">
@@ -35,6 +39,7 @@ const LoginComponent = () => {
                     </button>
                 </form>
             </div>
+            <button className='loggeo pseudo-button' type='submit' onClick={travel}>Not an ACCOUNT?</button>
         </div>
     );
 };

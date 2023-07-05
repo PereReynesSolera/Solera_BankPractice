@@ -14,6 +14,7 @@ const FormComponent = () => {
     let userContent = "";
     let pwdContent = "";
 
+
     const regexCheck = (id, content) => {
 
         switch (id) {
@@ -67,6 +68,10 @@ const FormComponent = () => {
           }
     }
 
+    const travel = () => {
+        navigate("/login");
+    }
+
     return (
         <div className="container">
             <div>
@@ -104,6 +109,7 @@ const FormComponent = () => {
                     </button>
                 </form>
             </div>
+            <button className='loggeo pseudo-button' type='submit' onClick={travel}>Are you logged?</button>
         </div>
     );
 };
