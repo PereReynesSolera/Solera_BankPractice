@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none; /* Quitar subrayado */
+  color: whitesmoke; /* Cambiar el color del texto a negro */
+}
+
+ul {
+  padding: 0;
+}
+
+.sidebar {
+  color: whitesmoke;
+  background: linear-gradient(#141e30, #243b55);
+  margin: 0;
+  padding: 0;
+  width: 10%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 5em;
+  flex-direction: column;
+}
+
+.user {
+  margin-top: 10px;
+  height: 10%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+
+  --border-size: 3px;
+  --border-angle: 0turn;
+  background-image: conic-gradient(
+      from var(--border-angle),
+      #213,
+      #112 50%,
+      #213
+    ),
+    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: bg-spin 10s linear infinite;
+}
+
+.profile-pic {
+  background-image: url(https://th.bing.com/th/id/OIP.waQfEWQlNA_TVGYC3Z1EfwHaHa?pid=ImgDet&rs=1);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50px;
+  height: 4em;
+  width: 4em;
+  border-radius: 100%;
+}
+
+.balance {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  flex-direction: column;
+  width: 70%;
+  height: 10%;
+}
+
+.options {
+  width: 60%;
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+  gap: 10em;
+}
+
+
+.list {
+  list-style: none;
+  border-bottom: 3px solid whitesmoke;
+  margin-bottom: 3em;
+}
+
+@keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
