@@ -16,4 +16,8 @@ public class UserService {
 		userList.add(user);
 		return user;
 	}
+
+	public List<User> fetchUserList() {
+		return userList;
+	}
  }
