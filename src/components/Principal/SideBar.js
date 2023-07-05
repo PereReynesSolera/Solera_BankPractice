@@ -34,7 +34,7 @@ const Sidebar = () => {
             <a href="#">Notifications</a>
           </li>
           <li className="list">
-            <a href="#">Logout</a>
+            <a href="http://localhost:3000">Logout</a>
           </li>
         </ul>
       </div>

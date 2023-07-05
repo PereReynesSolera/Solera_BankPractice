@@ -6,8 +6,25 @@ const LoginComponent = () => {
 
     const navigate = useNavigate();
 
-    const naving = () => {
-        navigate("/principal");
+    const getUsers = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:9091/infobank`, {
+              method: "GET",
+            });
+      
+            const finalResponse = await response.json();
+            console.log(finalResponse)
+            
+            if((finalResponse[0].userName === document.getElementById("inputUser").value) && (finalResponse[0].password === document.getElementById("inputPwd").value)){
+                navigate("/principal");
+                console.log(finalResponse);
+            }else{
+                alert("User and Password don't match");
+            }
+          } catch (error) {
+            console.error(error);
+          }
     }
     
     const travel = () => {
@@ -21,7 +38,7 @@ const LoginComponent = () => {
             </div>
             <div className="login-box">
                 <h2>Login</h2>
-                <form onSubmit={naving}>
+                <form onSubmit={getUsers}>
                     <div className="user-box">
                         <input id="inputUser" type="text" name="" required=""></input>
                         <label>Username</label>
