@@ -62,7 +62,7 @@ const FormComponent = () => {
         
             navigate("/principal");
           } catch (error) {
-            navigate("/principal");
+            navigate("/");
             console.error("Error: " + error);
           }
     }
