@@ -1,12 +1,14 @@
 import React from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router';
 
 const LoginComponent = () => {
 
-    const checkUserPassword = () => {
-        
-    }
+    const navigate = useNavigate();
 
+    const naving = () => {
+        navigate("/principal");
+    }
 
     return (
         <div className="container">
@@ -15,7 +17,7 @@ const LoginComponent = () => {
             </div>
             <div className="login-box">
                 <h2>Login</h2>
-                <form>
+                <form onSubmit={naving}>
                     <div className="user-box">
                         <input id="inputUser" type="text" name="" required=""></input>
                         <label>Username</label>
@@ -24,13 +26,13 @@ const LoginComponent = () => {
                         <input id="inputPwd" type="password" name="" required=""></input>
                         <label>Password</label>
                     </div>
-                    <a className='pseudo-button' href='http://localhost:3000/principal'>
+                    <button className='pseudo-button' type='submit'>
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Submit
-                    </a>
+                    </button>
                 </form>
             </div>
         </div>
