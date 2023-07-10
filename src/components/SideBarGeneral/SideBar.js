@@ -2,15 +2,29 @@ import "./SideBar.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Sidebar = () => {
+
+  let accountUser;
+
+  const data = async () => {
+    try {
+      const response = await fetch( `http://localhost:9091/api/getUser/ByName/`+ localStorage.getItem("generalUserName"));
+
+      const finalResponse = await response.json();
+      console.log(finalResponse);
+  
+      accountUser = finalResponse.userName;
+    } catch (error) {
+      console.log(error.getMessage() + "Hay tremendo error");
+    }
+  };
+
   return (
     <div className="sidebar">
       <div className="user">
-        <div className="profile-pic">
-
-        </div>
+        <div className="profile-pic"></div>
         <div className="profile-data">
-            <h4>Nombre</h4>
-            <p>Correo</p>
+          <h4>{accountUser}</h4>
+          <p>Correo</p>
         </div>
       </div>
 

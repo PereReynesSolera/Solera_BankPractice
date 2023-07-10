@@ -57,7 +57,7 @@ const FormComponent = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:9091/infobank`, {
+      const response = await fetch(`http://localhost:9091/api/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,11 +66,11 @@ const FormComponent = () => {
         body: JSONformat,
       });
 
-      const responseData = await response.json();
+      //const responseData = await response.json();
 
       navigate("/principal");
 
-      console.log(responseData); // Manejar la respuesta del backend
+      //console.log(responseData); // Manejar la respuesta del backend
     } catch (error) {
       console.error(error);
     }

@@ -2,29 +2,29 @@ import React from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router';
 
-const LoginComponent = () => {
+const LoginComponent = (props) => {
 
     const navigate = useNavigate();
 
     const getUsers = async (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch(`http://localhost:9091/infobank`, {
+            const response = await fetch(`http://localhost:9091/api/getUser/ByName/` + e.target.username.value, {
               method: "GET",
+              body: JSON.stringify({
+                username: e.target.username.value,
+                password: e.target.password.value
+              })
             });
       
+            localStorage.setItem("generalUserName", e.target.username.value)
             const finalResponse = await response.json();
             console.log(finalResponse)
             
-            if((finalResponse[0].userName === document.getElementById("inputUser").value) && (finalResponse[0].password === document.getElementById("inputPwd").value)){
+            if((finalResponse.userName === e.target.username.value) && (finalResponse.password === e.target.password.value)){
                 navigate("/principal");
-                console.log(finalResponse);
             }else{
                 alert("User and Password don't match");
             }
-          } catch (error) {
-            console.error(error);
-          }
     }
     
     const travel = () => {
@@ -40,11 +40,11 @@ const LoginComponent = () => {
                 <h2>Login</h2>
                 <form onSubmit={getUsers}>
                     <div className="user-box">
-                        <input id="inputUser" type="text" name="" required=""></input>
+                        <input id="inputUser" type="text" name="username" required=""></input>
                         <label>Username</label>
                     </div>
                     <div className="user-box">
-                        <input id="inputPwd" type="password" name="" required=""></input>
+                        <input id="inputPwd" type="password" name="password" required=""></input>
                         <label>Password</label>
                     </div>
                     <button className='pseudo-button' type='submit'>

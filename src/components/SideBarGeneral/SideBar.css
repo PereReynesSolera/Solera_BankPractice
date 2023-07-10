@@ -42,13 +42,13 @@ ul {
       #112 50%,
       #213
     ),
-    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+    conic-gradient(from var(--border-angle), transparent 20%, rgb(241, 248, 151), rgb(27, 214, 43));
   background-size: calc(100% - (var(--border-size) * 2))
       calc(100% - (var(--border-size) * 2)),
     cover;
   background-position: center center;
   background-repeat: no-repeat;
-  animation: bg-spin 10s linear infinite;
+  animation: bg-spin 9s linear infinite;
 }
 
 .profile-pic {

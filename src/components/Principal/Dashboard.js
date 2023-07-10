@@ -1,10 +1,9 @@
 import "./Dashboard.css";
 
 const Dashboard = () => {
-
-const alerta = () => {
+  const alerta = () => {
     alert("User Created");
-}
+  };
 
   return (
     <div className="dashboard">

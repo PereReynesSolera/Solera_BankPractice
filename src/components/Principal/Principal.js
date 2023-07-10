@@ -1,6 +1,6 @@
 import "./Principal.css";
 
-import Sidebar from "./SideBar";
+import Sidebar from "../SideBarGeneral/SideBar";
 import Dashboard from "./Dashboard";
 
 const Principal = () => {
