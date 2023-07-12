@@ -1,0 +1,63 @@
+.general-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardAccount{
+    width: 90%;
+    height: 100vh;
+    background: linear-gradient(#c6c9cd, #c6c8ca);
+    display: flex;
+    flex-direction: column;
+}
+
+.bodyDashboardAccount{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerAccount{
+    border-radius: 3em;
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 85%;
+    border: 2px solid grey;
+    box-shadow: 0 10px 15px rgba(0,0,0,.6);
+}
+
+.Izq { 
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Der {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.Der button{
+    height: 2.5em;
+    width: 10em;
+}
+
+.headerdos{
+    text-shadow: 0.1em 0.1em red;
+}
+
+

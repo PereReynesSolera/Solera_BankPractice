@@ -1,9 +1,12 @@
 import "./SideBar.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+import { useNavigate } from 'react-router';
+
 const Sidebar = () => {
 
   let accountUser;
+  const navigate = useNavigate();
 
   const data = async () => {
     try {
@@ -17,6 +20,10 @@ const Sidebar = () => {
       console.log(error.getMessage() + "Hay tremendo error");
     }
   };
+
+  const move = () => {
+    navigate("/accounts");
+  }
 
   return (
     <div className="sidebar">
@@ -42,7 +49,7 @@ const Sidebar = () => {
             <a href="#">My Account</a>
           </li>
           <li className="list">
-            <a href="#">Bank Accounts</a>
+            <a href="#" onClick={move}>Bank Accounts</a>
           </li>
           <li className="list">
             <a href="#">Notifications</a>
