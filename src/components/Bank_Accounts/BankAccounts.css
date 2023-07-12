@@ -45,19 +45,42 @@
     width: 20%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     gap: 10%;
 }
 
 .Der button{
+    margin-top: 7.5%;
     height: 2.5em;
     width: 10em;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.6);
 }
 
-.headerdos{
-    text-shadow: 0.1em 0.1em red;
+.Izq button:hover{
+    box-shadow: none;
 }
 
+.create:hover{
+    color: black;
+    background-color: lightgreen;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.6);
+}
 
+.delete:hover{
+    background-color: red;
+}
+
+.p-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 3%;
+}
+
+.p-button button{
+    height: 75%;
+}
