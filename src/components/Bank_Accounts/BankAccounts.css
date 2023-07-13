@@ -1,109 +1,183 @@
 .general-container {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dashboardAccount{
-    width: 90%;
-    height: 100vh;
-    background: linear-gradient(#c6c9cd, #c6c8ca);
-    display: flex;
-    flex-direction: column;
+.dashboardAccount {
+  width: 90%;
+  height: 100vh;
+  background: linear-gradient(#c6c9cd, #c6c8ca);
+  display: flex;
+  flex-direction: column;
 }
 
-.bodyDashboardAccount{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bodyDashboardAccount {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.centerAccount{
-    border-radius: 3em;
-    display: flex;
-    flex-direction: row;
-    height: 50%;
-    width: 85%;
-    border: 2px solid grey;
-    box-shadow: 0 10px 15px rgba(0,0,0,.6);
-    background-color: whitesmoke;
+.centerAccount {
+  border-radius: 3em;
+  display: flex;
+  flex-direction: row;
+  height: 75%;
+  width: 85%;
+  border: 2px solid grey;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
+  background-color: whitesmoke;
 }
 
-.Izq { 
-    width: 80%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.Izq {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .Der {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 10%;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 10%;
 }
 
-.Der button{
-    margin-top: 7.5%;
-    height: 2.5em;
-    width: 10em;
-    box-shadow: 5px 5px 10px rgba(0,0,0,.6);
+.Der button {
+  margin-top: 7.5%;
+  height: 2.5em;
+  width: 10em;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
-.Izq button:hover{
-    box-shadow: none;
+.Izq button:hover {
+  box-shadow: none;
 }
 
-.create:hover{
-    color: black;
-    background-color: lightgreen;
-    box-shadow: 5px 5px 10px rgba(0,0,0,.6);
+.create:hover {
+  color: black;
+  background-color: lightgreen;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
-.delete:hover{
+.delete:hover {
+  background-color: red;
+}
+
+.p-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 3%;
+}
+
+.p-button button {
+  height: 75%;
+}
+
+.input-container {
+  border: 2px solid grey;
+  border-radius: 1em;
+  width: 75%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7.5%;
+  animation-name: grow-up;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.miniinput {
+  border-radius: 1em;
+  border: 2px solid grey;
+  text-align: center;
+}
+
+.button-create-thing:hover {
+  background: linear-gradient(#141e30, #243b55);
+}
+
+@keyframes grow-up {
+  0% {
+    background-color: transparent;
+    transform: scale(0.25);
+  }
+  49.99% {
+    background-color: transparent;
+  }
+  50% {
     background-color: red;
+  }
+  50.01% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
 }
 
-.p-button{
+.headerdosup {
     width: 100%;
+    height: 10%;
+}
+
+.headerdosmedium{
+    width: 100%;
+    height: 90%;
     display: flex;
+    align-items: start;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 3%;
 }
 
-.p-button button{
-    height: 75%;
+.headerdosdown {
+  border-radius: 1em;
+  border: 5px solid grey;
+  text-align: center;
+  width: 90%;
+  height: auto;
+  max-height: 90%;
+  overflow: auto;
 }
 
-.input-container{
-    border: 2px solid grey;
-    border-radius: 1em;
-    width: 75%;
-    height: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 7.5%;
+/* Chrome & Safari */
+#miDiv::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra de desplazamiento */
 }
 
-.miniinput{
-    border-radius: 1em;
-    border: 2px solid grey;
-    text-align: center;
+#miDiv::-webkit-scrollbar-thumb {
+  background-color: #a3a1a1;
+  border-radius: 10em;
 }
 
-.button-create-thing:hover{
-    background: linear-gradient(#141e30, #243b55);
+#miDiv::-webkit-scrollbar-track {
+  background-color: transparent; 
+}
+
+/*Firefox */
+#miDiv {
+  scrollbar-width: thin;
+}
+
+#miDiv::-moz-scrollbar-thumb {
+  background-color: #a8793c;
+  border-radius: 10em;
+}
+
+#miDiv::-moz-scrollbar-track {
+  background-color:transparent;
 }

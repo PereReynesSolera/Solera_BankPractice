@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const Sidebar = () => {
+
+  const money = 0; //Erase this shit and change it for the true response with money
+
   const [info, setInfo] = useState([])
-  const [name, setName] = useState("CRITICAL ERROR: NOT FOUND");
-  const [email, setEmail] = useState("");
+
   const navigate = useNavigate();
 
-
   const data = async () => {
-    console.log("Executing the function data");
+    //console.log("Executing the function data");
     try {
       const response = await fetch(`http://10.33.146.143:9091/api/user/email`,
         { 
@@ -31,32 +32,38 @@ const Sidebar = () => {
     navigate("/accounts");
   };
 
+  const move2 = () => {
+    navigate("/principal");
+  }
+
+  const checkExistenceInfo = (objeto) => {
+    return ((objeto !== null || objeto !== undefined) && Object.keys(objeto).length > 0) 
+  };
+
+
   useEffect(() => {
     data();
-    if(info.userName){
-      setName(info.firstName + " " + info.lastName);
-      setEmail(info.userName);
-    }
+    //console.log(info)
   },[]);
 
   return (
     <div className="sidebar">
       <div className="user">
         <div className="profile-data">
-          <h4>{name}</h4>
-          <p>{email}</p>
+          <h4>{checkExistenceInfo(info) ? `${info.firstName} ${info.lastName}` : "CRITICAL ERROR: NOT FOUND"}</h4>
+          <p>{checkExistenceInfo(info) ? info.userName : ""}</p>
         </div>
       </div>
 
       <div className="balance">
-        <h4 className="header4">$ 999999</h4>
+        <h4 className="header4">${true ? money : "999999.99"}</h4>
         <p>Actual account balance</p>
       </div>
 
       <div className="options">
         <ul className="nav">
           <li className="list">
-            <a href="#">Home</a>
+            <a href="#" onClick={move2}>Home</a>
           </li>
           <li className="list">
             <a href="#">My Account</a>

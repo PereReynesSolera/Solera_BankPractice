@@ -1,18 +1,36 @@
 import Sidebar from "../SideBarGeneral/SideBar";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./BankAccounts.css";
 
 const BankAccounts = () => {
-  const accounts = [
-    "Pere Reynes - Banco nosequé",
-    "Aritz Silva - Banco nosecuantos",
-    "Venga va si - el que quiera que sea",
-  ];
-
+  const [accounts, setAccounts] = useState([]);
   const [showInputs, setShowInputs] = useState(false);
   const [buttonText, setButtonText] = useState("Create Account");
+  //const [response, setResponse] = useState([]);
+
+  const getAccounts = async () => {
+    try {
+      const response =
+        await fetch(`http://10.33.146.143:9091/api/bank`, {
+          method: "POST",
+          body: localStorage.getItem("generalUserName"),
+        });
+      if (response.ok) {
+        const finalResponse = await response.json();
+        setAccounts(finalResponse);
+        //console.log(finalResponse);
+      } else {
+        alert("Couldn't login");
+      }
+
+    } catch (error) {
+      console.log(error + "!!!!!!!!!!!!!!!!!!!!!")
+    }
+
+    
+  };
 
   const createAccount = () => {
     if (showInputs) {
@@ -25,37 +43,69 @@ const BankAccounts = () => {
   };
 
   function onlyNumbers(str) {
-    var patron = /^[0-9]+$/;
+    var patron = /^(\d+|\d+.\d+)$/;
     return patron.test(str);
   }
 
   const submitCreateAccount = async () => {
-    let accountNumber = document.getElementById("an-input").value;
-    let stringCurrency = document.getElementById("c-input").value;
+    let accountNum = document.getElementById("an-input").value;
+    let moneyAccount = document.getElementById("c-input").value;
+    let accountName = document.getElementById("ana-input").value;
     if (
-      accountNumber !== "" &&
-      stringCurrency !== "" &&
-      onlyNumbers(stringCurrency)
+      accountNum !== "" &&
+      moneyAccount !== "" &&
+      accountName !== "" &&
+      onlyNumbers(moneyAccount)
     ) {
       setShowInputs(false);
       setButtonText("Create Account");
 
       try {
-        await fetch("http://localhost:8080/api/bank/bankaccount", {
+        const response = await fetch("http://10.33.146.143:9091/api/bank/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            accountNumber: accountNumber,
-            stringCurrency: stringCurrency,
+            accountName : accountName,
+            accountNum: accountNum,
+            moneyAccount: moneyAccount,
+            userName: localStorage.getItem("generalUserName"),
           }),
         });
+        if(response.ok) {
+          getAccounts();
+        }
       } catch (error) {
         console.log("ERROR: FETCH UNREALIZED: " + error);
       }
     }
+    getAccounts();
   };
 
-  const deleteAccount = (id) => {};
+  const deleteAccount = async() => {
+    /*
+    try {
+      const response =
+        await fetch(`http://10.33.146.143:9091/api/bank`, {
+          method: "POST",
+          body: localStorage.getItem("generalUserName"),
+        });
+      if (response.ok) {
+        const finalResponse = await response.json();
+        setAccounts(finalResponse);
+        //console.log(finalResponse);
+      } else {
+        alert("Couldn't login");
+      }
+
+    } catch (error) {
+      console.log(error + "!!!!!!!!!!!!!!!!!!!!!")
+    }*/
+    console.log("Borrar")
+  };
+
+  useEffect(() => {
+    getAccounts();
+  }, []);
 
   return (
     <div className="general-container">
@@ -67,28 +117,34 @@ const BankAccounts = () => {
         <div className="bodyDashboardAccount">
           <div className="centerAccount">
             <div className="Izq">
-              <h2 className="headerdos">Bank Accounts</h2>
-              {accounts.length <= 0 ? (
-                <div className="p-button">
-                  <p>No available accounts</p>
-                  {/*<button type="button" className="delete">Erase this button</button>*/}
-                </div>
-              ) : (
-                accounts.map((account, index) => {
-                  return (
+              <div className="headerdosup">
+                <h2 className="headerdos">Bank Accounts</h2>
+              </div>
+              <div className="headerdosmedium">
+                <div className="headerdosdown" id="miDiv">
+                  {accounts.length <= 0 ? (
                     <div className="p-button">
-                      <p>{account}</p>
-                      <button
-                        type="button"
-                        className="delete"
-                        onClick={deleteAccount}
-                      >
-                        Delete Account
-                      </button>
+                      <p>No available accounts</p>
+                      {/*<button type="button" className="delete">Erase this button</button>*/}
                     </div>
-                  );
-                })
-              )}
+                  ) : (
+                    accounts.map((account, index) => {
+                      return (
+                        <div className="p-button" key={account.accountName + index}>
+                          <p>{`${account.accountName} - ${account.accountNum} - ${account.moneyAccount}`}</p>
+                          <button
+                            type="button"
+                            className="delete"
+                            onClick={deleteAccount}
+                          >
+                            Delete Account
+                          </button>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
             </div>
             <div className="Der">
               <button type="button" className="create" onClick={createAccount}>
@@ -97,13 +153,24 @@ const BankAccounts = () => {
               {showInputs && (
                 <div className="input-container">
                   <div>
+                    <p>Account Name:</p>
+                    <input
+                      type="text"
+                      placeholder="Account Name"
+                      id="ana-input"
+                      className="an-input miniinput"
+                      autoComplete="off"
+                      required
+                    />
+                  </div>
+                  <div>
                     <p>Account Number:</p>
                     <input
                       type="text"
                       placeholder="Account Number"
                       id="an-input"
                       className="an-input miniinput"
-                      autocomplete="off"
+                      autoComplete="off"
                       required
                     />
                   </div>
@@ -115,11 +182,15 @@ const BankAccounts = () => {
                       id="c-input"
                       className="c-input miniinput"
                       pattern="-?\d+(\.\d+)?"
-                      autocomplete="off"
+                      autoComplete="off"
                       required
                     />
                   </div>
-                  <button type="button" onClick={submitCreateAccount} className="button-create-thing">
+                  <button
+                    type="button"
+                    onClick={submitCreateAccount}
+                    className="button-create-thing"
+                  >
                     Create
                   </button>
                 </div>
