@@ -31,6 +31,7 @@
     width: 85%;
     border: 2px solid grey;
     box-shadow: 0 10px 15px rgba(0,0,0,.6);
+    background-color: whitesmoke;
 }
 
 .Izq { 
@@ -101,4 +102,8 @@
     border-radius: 1em;
     border: 2px solid grey;
     text-align: center;
+}
+
+.button-create-thing:hover{
+    background: linear-gradient(#141e30, #243b55);
 }

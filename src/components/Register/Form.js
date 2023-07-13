@@ -56,7 +56,7 @@ const FormComponent = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:9091/api/register`, {
+      const response = await fetch(`http://10.33.146.143:9091/api/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

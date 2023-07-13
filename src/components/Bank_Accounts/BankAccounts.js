@@ -74,7 +74,7 @@ const BankAccounts = () => {
                   {/*<button type="button" className="delete">Erase this button</button>*/}
                 </div>
               ) : (
-                accounts.map((account) => {
+                accounts.map((account, index) => {
                   return (
                     <div className="p-button">
                       <p>{account}</p>
@@ -119,7 +119,7 @@ const BankAccounts = () => {
                       required
                     />
                   </div>
-                  <button type="button" onClick={submitCreateAccount}>
+                  <button type="button" onClick={submitCreateAccount} className="button-create-thing">
                     Create
                   </button>
                 </div>
