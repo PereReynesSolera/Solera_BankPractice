@@ -17,7 +17,7 @@ import com.banksolera.bank_exercice.services.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping (path = "/api/user")
 public class UserController {
 
@@ -32,8 +32,8 @@ public class UserController {
 		return userService.create(user);
 	}
 
-	@GetMapping(path = "/email")
-	public GetUserResponse getUserByEmail(@RequestBody String userName) {
+	@PostMapping(path = "/email")
+	public ResponseEntity<?> getUserByEmail(@RequestBody String userName) {
 		GetUserResponse gur = new GetUserResponse();
 		User us1 = userService.findByUserName(userName);
 		gur.setId(us1.getId());
@@ -41,7 +41,7 @@ public class UserController {
 		gur.setLastName(us1.getLastName());
 		gur.setUserName(us1.getUserName());
 		gur.setImage(us1.getImage());
-		return gur;
+		return ResponseEntity.ok(gur);
 	}
 
 	@PostMapping("/login")

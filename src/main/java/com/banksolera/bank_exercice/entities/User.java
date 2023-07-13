@@ -32,9 +32,5 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<User> friends = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "users_bankaccounts", 
-	joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "bankaccount_id", referencedColumnName = "id"))	
-	private List<BankAccount> listBankAccount = new ArrayList<>();
+
 }
