@@ -23,7 +23,7 @@ const FormComponent = () => {
       case 2:
         pwdContent = content;
         pwdBool = passwordRegex.test(pwdContent);
-        console.log(pwdBool)
+        console.log(pwdBool);
         break;
       default:
         console.log("Error, not possible id, check regexCheck function");
@@ -53,7 +53,6 @@ const FormComponent = () => {
         image: "",
       };
       JSONformat = JSON.stringify(post);
-      console.log(JSONformat);
     }
 
     try {
@@ -66,11 +65,11 @@ const FormComponent = () => {
         body: JSONformat,
       });
 
-      //const responseData = await response.json();
-
-      navigate("/principal");
-
-      //console.log(responseData); // Manejar la respuesta del backend
+      if (response.ok) {
+        navigate("/principal");
+      } else {
+        alert("Couldn't create the user");
+      }
     } catch (error) {
       console.error(error);
     }

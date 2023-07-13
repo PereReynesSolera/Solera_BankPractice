@@ -84,3 +84,21 @@
 .p-button button{
     height: 75%;
 }
+
+.input-container{
+    border: 2px solid grey;
+    border-radius: 1em;
+    width: 75%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7.5%;
+}
+
+.miniinput{
+    border-radius: 1em;
+    border: 2px solid grey;
+    text-align: center;
+}

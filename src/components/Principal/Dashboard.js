@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <header className="headerDashboard">
-        <h1>Cyber Bank</h1>
+        <h1>Crypto Bank</h1>
       </header>
       <div className="bodyDashboard">
         <div className="center">
