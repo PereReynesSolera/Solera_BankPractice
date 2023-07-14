@@ -31,4 +31,8 @@ public class InfoBankService extends CommonService<BankAccount, InterBankAccount
 	public List<BankAccount> findAllByUser(User user) {
 		return repository.findAllByUser(user);
 	}
+
+	public void delete(BankAccount bankAccount) {
+		repository.delete(bankAccount);
+	}
 }

@@ -1,6 +1,7 @@
 package com.banksolera.bank_exercice.controllers;
 
 import com.banksolera.bank_exercice.dto.request.CreateBankAccountRequest;
+import com.banksolera.bank_exercice.dto.request.DeleteBankAccountRequest;
 import com.banksolera.bank_exercice.dto.response.GetBankAccountResponse;
 import com.banksolera.bank_exercice.entities.BankAccount;
 import com.banksolera.bank_exercice.entities.User;
@@ -8,6 +9,7 @@ import com.banksolera.bank_exercice.repository.InterBankAccountRepository;
 import com.banksolera.bank_exercice.services.InfoBankService;
 import com.banksolera.bank_exercice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +50,7 @@ public class InfoBankController {
         List<BankAccount> bankAccounts = bankService.findAllByUser(user);
         for (BankAccount bankAcc:bankAccounts) {
             GetBankAccountResponse gbar = new GetBankAccountResponse();
+            gbar.setId(bankAcc.getId());
             gbar.setAccountName(bankAcc.getAccountName());
             gbar.setAccountNum(bankAcc.getAccountNum());
             gbar.setMoneyAccount(bankAcc.getMoneyAccount());
@@ -55,7 +58,23 @@ public class InfoBankController {
         }
         return ResponseEntity.ok(listAccounts);
     }
-
-
+    @DeleteMapping(path = "/delete")
+    @ResponseBody
+    public ResponseEntity<?> deleteBankAccount(@RequestBody DeleteBankAccountRequest deleteRequest) {
+        Long id = deleteRequest.getId();
+        String userName = deleteRequest.getUserName();
+        User user = userService.findByUserName(userName);
+        BankAccount bankAccount = bankService.findById(id);
+        if(bankAccount != null) {
+            if (bankAccount.getUser().equals(user)) {
+                bankService.delete(bankAccount);
+                return ResponseEntity.ok("Deleted bank account.");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Logged user is not allowed to delete this bank account.");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bank account does not exist.");
+        }
+    }
 
 }

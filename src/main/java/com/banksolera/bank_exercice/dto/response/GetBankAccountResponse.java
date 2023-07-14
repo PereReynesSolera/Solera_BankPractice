@@ -6,6 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetBankAccountResponse {
+    Long id;
     String accountName;
     String accountNum;
     Double moneyAccount;

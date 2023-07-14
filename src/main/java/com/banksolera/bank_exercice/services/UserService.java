@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.banksolera.bank_exercice.entities.User;
-import com.banksolera.bank_exercice.repository.InterBankAccountRepository;
 import com.banksolera.bank_exercice.repository.InterUserRepository;
-
-import jakarta.validation.Valid;
 
 @Service
 public class UserService extends CommonService<User, InterUserRepository> {
@@ -20,7 +17,7 @@ public class UserService extends CommonService<User, InterUserRepository> {
 	private InterUserRepository userRepository;
 	 public ResponseEntity<?> create(User user) {
 	 	Optional<User> userOptionalEmail = userRepository.findUserByUserName(user.getUserName());
-		if (userOptionalEmail.isPresent()){;
+		if (userOptionalEmail.isPresent()){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: username is taken");
 		} else{
 			repository.save(user);

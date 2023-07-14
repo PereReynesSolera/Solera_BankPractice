@@ -30,7 +30,6 @@ public class User {
 	String image;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private Set<User> friends = new HashSet<>();
-
+	private List<User> friends = new ArrayList<>();
 
 }
