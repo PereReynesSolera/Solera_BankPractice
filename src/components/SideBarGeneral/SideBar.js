@@ -4,25 +4,39 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 const Sidebar = () => {
-
-  const money = 0; //Erase this shit and change it for the true response with money
-
-  const [info, setInfo] = useState([])
+  const [info, setInfo] = useState([]);
 
   const navigate = useNavigate();
 
-  const data = async () => {
-    //console.log("Executing the function data");
+  const [accounts, setAccounts] = useState([]);
+  
+  const getAccounts = async () => {
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/user/email`,
-        { 
-          method: "POST",
-          body: localStorage.getItem("generalUserName"),
-        }
-      );
+      const response = await fetch(`http://10.33.146.143:9091/api/bank`, {
+        method: "POST",
+        body: localStorage.getItem("generalUserName"),
+      });
+      if (response.ok) {
+        const finalResponse = await response.json();
+        console.log(finalResponse);
+        setAccounts(finalResponse);
+      } else {
+        alert("Couldn't login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const data = async () => {
+    try {
+      const response = await fetch(`http://10.33.146.143:9091/api/user/email`, {
+        method: "POST",
+        body: localStorage.getItem("generalUserName"),
+      });
 
       const finalResponse = await response.json();
-      setInfo(finalResponse)
+      setInfo(finalResponse);
     } catch (error) {
       console.log(error);
     }
@@ -34,39 +48,60 @@ const Sidebar = () => {
 
   const move2 = () => {
     navigate("/principal");
+  };
+
+  const move3 = () => {
+    navigate("/homepage");
   }
 
   const checkExistenceInfo = (objeto) => {
-    return ((objeto !== null || objeto !== undefined) && Object.keys(objeto).length > 0) 
+    return (
+      (objeto !== null || objeto !== undefined) &&
+      Object.keys(objeto).length > 0
+    );
   };
 
+  const sumMoney = () => {
+    const totalMoney = accounts.reduce((accumulator, account) => {
+      return accumulator + account.moneyAccount;
+    }, 0);
+  
+    return totalMoney; 
+  };
+  
 
   useEffect(() => {
     data();
-    //console.log(info)
-  },[]);
+    getAccounts();
+  }, []);
 
   return (
     <div className="sidebar">
       <div className="user">
         <div className="profile-data">
-          <h4>{checkExistenceInfo(info) ? `${info.firstName} ${info.lastName}` : "CRITICAL ERROR: NOT FOUND"}</h4>
+          <h4>
+            {checkExistenceInfo(info)
+              ? `${info.firstName} ${info.lastName}`
+              : "CRITICAL ERROR: NOT FOUND"}
+          </h4>
           <p>{checkExistenceInfo(info) ? info.userName : ""}</p>
         </div>
       </div>
 
       <div className="balance">
-        <h4 className="header4">${true ? money : "999999.99"}</h4>
-        <p>Actual account balance</p>
+        <h4 className="header4">${sumMoney()}</h4> 
+        <p>All accounts total balance</p>
       </div>
 
       <div className="options">
         <ul className="nav">
           <li className="list">
-            <a href="#" onClick={move2}>Home</a>
+            <a href="#" onClick={move3}>
+              Home
+            </a>
           </li>
           <li className="list">
-            <a href="#">My Account</a>
+            <a href="#" onClick={move2}>My Account</a> 
           </li>
           <li className="list">
             <a href="#" onClick={move}>

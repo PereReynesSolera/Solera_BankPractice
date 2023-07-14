@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const FormComponent = () => {
   const navigate = useNavigate();
 
+  //const usernameRegex = /^[A-Za-z0-9.]+@[A-Za-z0-9]+\.[A-Za-z]+$/;
   const usernameRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const passwordRegex = /^(?=.*\d).{9,32}$/;
 
@@ -34,16 +35,16 @@ const FormComponent = () => {
   const inputToJSON = async (e) => {
     e.preventDefault();
     let JSONformat = null;
-
+      
     if (
-      userBool &&
-      pwdBool &&
-      document.getElementById("inputConfirmPassword").value &&
-      pwdContent
+      (userBool &&
+      pwdBool) &&
+      (document.getElementById("inputConfirmPassword").value &&
+      pwdContent)
     ) {
       let firstName = document.getElementById("inputFirstName").value;
       let lastName = document.getElementById("inputLastName").value;
-      let tlfNumber = document.getElementById("inputTlfNumber").value;
+      let tlfNumber = document.getElementById("inputTlfNumber").value.trim();
       let post = {
         firstName: firstName,
         lastName: lastName,
@@ -53,19 +54,21 @@ const FormComponent = () => {
         image: "",
       };
       JSONformat = JSON.stringify(post);
+      //console.log(JSONformat);
     }
 
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/register`, {
+      const response = await fetch(`http://10.33.146.143:9091/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSONformat,
       });
-
+      console.log(response.ok)
       if (response.ok) {
+        localStorage.setItem("generalUserName", e.target.username.value);
+        localStorage.setItem("generalPassword", e.target.password.value);
         navigate("/principal");
       } else {
         alert("Couldn't create the user");
@@ -103,7 +106,7 @@ const FormComponent = () => {
             <input
               id="inputUser"
               type="text"
-              name=""
+              name="username"
               required=""
               onChange={() =>
                 regexCheck(1, document.getElementById("inputUser").value)
@@ -115,7 +118,7 @@ const FormComponent = () => {
             <input
               id="inputPwd"
               type="password"
-              name=""
+              name="password"
               required=""
               onChange={() =>
                 regexCheck(2, document.getElementById("inputPwd").value)

@@ -4,8 +4,8 @@ body {
 }
 
 a {
-  text-decoration: none; /* Quitar subrayado */
-  color: whitesmoke; /* Cambiar el color del texto a negro */
+  text-decoration: none;
+  color: whitesmoke; 
 }
 
 ul {

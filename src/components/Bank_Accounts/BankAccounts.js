@@ -8,15 +8,13 @@ const BankAccounts = () => {
   const [accounts, setAccounts] = useState([]);
   const [showInputs, setShowInputs] = useState(false);
   const [buttonText, setButtonText] = useState("Create Account");
-  //const [response, setResponse] = useState([]);
 
   const getAccounts = async () => {
     try {
-      const response =
-        await fetch(`http://10.33.146.143:9091/api/bank`, {
-          method: "POST",
-          body: localStorage.getItem("generalUserName"),
-        });
+      const response = await fetch(`http://10.33.146.143:9091/api/bank`, {
+        method: "POST",
+        body: localStorage.getItem("generalUserName"),
+      });
       if (response.ok) {
         const finalResponse = await response.json();
         setAccounts(finalResponse);
@@ -24,12 +22,9 @@ const BankAccounts = () => {
       } else {
         alert("Couldn't login");
       }
-
     } catch (error) {
-      console.log(error + "!!!!!!!!!!!!!!!!!!!!!")
+      console.log(error);
     }
-
-    
   };
 
   const createAccount = () => {
@@ -61,17 +56,20 @@ const BankAccounts = () => {
       setButtonText("Create Account");
 
       try {
-        const response = await fetch("http://10.33.146.143:9091/api/bank/create", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            accountName : accountName,
-            accountNum: accountNum,
-            moneyAccount: moneyAccount,
-            userName: localStorage.getItem("generalUserName"),
-          }),
-        });
-        if(response.ok) {
+        const response = await fetch(
+          "http://10.33.146.143:9091/api/bank/create",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              accountName: accountName,
+              accountNum: accountNum,
+              moneyAccount: moneyAccount,
+              userName: localStorage.getItem("generalUserName"),
+            }),
+          }
+        );
+        if (response.ok) {
           getAccounts();
         }
       } catch (error) {
@@ -79,28 +77,32 @@ const BankAccounts = () => {
       }
     }
     getAccounts();
+    window.location.reload(); //Recharge the page to update the balance.
   };
 
-  const deleteAccount = async() => {
-    /*
+  const deleteAccount = async (id) => {
     try {
-      const response =
-        await fetch(`http://10.33.146.143:9091/api/bank`, {
-          method: "POST",
-          body: localStorage.getItem("generalUserName"),
-        });
+      const response = await fetch(`http://10.33.146.143:9091/api/bank/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          userName: localStorage.getItem("generalUserName"), 
+        })
+      });
+      console.log(response.ok)
       if (response.ok) {
         const finalResponse = await response.json();
         setAccounts(finalResponse);
-        //console.log(finalResponse);
       } else {
-        alert("Couldn't login");
+        alert("Couldn't erase");
       }
-
     } catch (error) {
-      console.log(error + "!!!!!!!!!!!!!!!!!!!!!")
-    }*/
-    console.log("Borrar")
+      console.log(error);
+    }
+    getAccounts();
   };
 
   useEffect(() => {
@@ -125,17 +127,19 @@ const BankAccounts = () => {
                   {accounts.length <= 0 ? (
                     <div className="p-button">
                       <p>No available accounts</p>
-                      {/*<button type="button" className="delete">Erase this button</button>*/}
                     </div>
                   ) : (
                     accounts.map((account, index) => {
                       return (
-                        <div className="p-button" key={account.accountName + index}>
+                        <div
+                          className="p-button"
+                          key={account.accountName + index}
+                        >
                           <p>{`${account.accountName} - ${account.accountNum} - ${account.moneyAccount}`}</p>
                           <button
                             type="button"
                             className="delete"
-                            onClick={deleteAccount}
+                            onClick={() => deleteAccount(account.id)}
                           >
                             Delete Account
                           </button>
