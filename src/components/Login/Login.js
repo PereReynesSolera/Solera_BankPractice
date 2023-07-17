@@ -22,7 +22,7 @@ const LoginComponent = (props) => {
       localStorage.setItem("generalPassword", e.target.password.value);
       navigate("/principal");
     } else {
-      alert("Couldn't login");
+      alert("Couldn't_login");
     }
   };
 
@@ -56,7 +56,7 @@ const LoginComponent = (props) => {
             ></input>
             <label>Password</label>
           </div>
-          <button className="pseudo-button" type="submit">
+          <button className="pseudo-button" type="submit" id="logginBtn">
             <span></span>
             <span></span>
             <span></span>
