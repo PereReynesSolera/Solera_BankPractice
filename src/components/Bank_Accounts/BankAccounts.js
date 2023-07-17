@@ -11,7 +11,7 @@ const BankAccounts = () => {
 
   const getAccounts = async () => {
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/bank`, {
+      const response = await fetch(`http://10.33.146.202:9091/api/bank`, {
         method: "POST",
         body: localStorage.getItem("generalUserName"),
       });
@@ -57,7 +57,7 @@ const BankAccounts = () => {
 
       try {
         const response = await fetch(
-          "http://10.33.146.143:9091/api/bank/create",
+          "http://10.33.146.202:9091/api/bank/create",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -82,7 +82,7 @@ const BankAccounts = () => {
 
   const deleteAccount = async (id) => {
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/bank/delete`, {
+      const response = await fetch(`http://10.33.146.202:9091/api/bank/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

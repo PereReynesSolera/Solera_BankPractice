@@ -58,7 +58,7 @@ const FormComponent = () => {
     }
 
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/user/register`, {
+      const response = await fetch(`http://10.33.146.202:9091/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,7 +135,7 @@ const FormComponent = () => {
             ></input>
             <label>Confirm Password</label>
           </div>
-          <button className="pseudo-button" type="submit">
+          <button className="pseudo-button" type="submit" id="registerBtn">
             <span></span>
             <span></span>
             <span></span>

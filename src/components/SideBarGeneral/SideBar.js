@@ -12,7 +12,7 @@ const Sidebar = () => {
   
   const getAccounts = async () => {
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/bank`, {
+      const response = await fetch(`http://10.33.146.202:9091/api/bank`, {
         method: "POST",
         body: localStorage.getItem("generalUserName"),
       });
@@ -30,7 +30,7 @@ const Sidebar = () => {
 
   const data = async () => {
     try {
-      const response = await fetch(`http://10.33.146.143:9091/api/user/email`, {
+      const response = await fetch(`http://10.33.146.202:9091/api/user/email`, {
         method: "POST",
         body: localStorage.getItem("generalUserName"),
       });

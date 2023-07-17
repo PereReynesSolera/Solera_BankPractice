@@ -7,7 +7,7 @@ const LoginComponent = (props) => {
 
   const getUsers = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://10.33.146.143:9091/api/user/login`, {
+    const response = await fetch(`http://10.33.146.202:9091/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
