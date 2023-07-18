@@ -42,6 +42,8 @@ const Sidebar = () => {
     }
   };
 
+  
+
   const move = () => {
     navigate("/accounts");
   };
@@ -52,6 +54,14 @@ const Sidebar = () => {
 
   const move3 = () => {
     navigate("/homepage");
+  }
+
+  const move4 = () => {
+    navigate("/notifications")
+  }
+
+  const move5 = () => {
+    navigate("/login")
   }
 
   const checkExistenceInfo = (objeto) => {
@@ -109,10 +119,10 @@ const Sidebar = () => {
             </a>
           </li>
           <li className="list">
-            <a href="#">Notifications</a>
+            <a href="#" onClick={move4}>Notifications</a>
           </li>
           <li className="list">
-            <a href="http://localhost:3000">Logout</a>
+            <a href="#" onClick={move5}>Logout</a>
           </li>
         </ul>
       </div>

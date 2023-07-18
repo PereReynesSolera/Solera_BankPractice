@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router";
 import "./Home.css";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const navigate = useNavigate();
-
   const [value, setValue] = useState(true);
 
   const [friends, setFriends] = useState([]);
@@ -52,7 +49,7 @@ const Home = () => {
           return "Buy";
         }
       });
-    }, 2000);
+    }, 250);
     return () => clearInterval(interval);
   }, []);
 
@@ -61,13 +58,13 @@ const Home = () => {
       <header className="headerHome">
         <h1>Crypto Bank</h1>
         <div className="saluditos">
-          <div onClick={() => setValue(true)}>
+          <div onClick={() => setValue(true)} id="Home-Welcome-id">
             <h2>Home-Welcome</h2>
           </div>
-          <div>
+          <div id="transactions-id">
             <h2>Transactions</h2>
           </div>
-          <div onClick={friendsGetter}>
+          <div onClick={friendsGetter} id="friend-id">
             <h2>Friends</h2>
           </div>
         </div>

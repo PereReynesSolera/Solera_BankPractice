@@ -1,12 +1,13 @@
+import './App.css';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Form from './components/Register/Form';
 import Principal from './components/Principal/Principal';
 import Login from './components/Login/Login';
 import BankAccounts from './components/Bank_Accounts/BankAccounts'
 import HomePage from './components/HomePage/HomePage';
-import './App.css';
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Notifications from './components/Notifications/Notifications';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/homepage" element={<HomePage />}/>
           <Route path="/principal" element={<Principal />}/>
           <Route path="/login" element={<Login />}/>
+          <Route path="/notifications" element={<Notifications />}/>
           <Route path="/accounts" element={<BankAccounts />}/>
         </Routes>
       </BrowserRouter>

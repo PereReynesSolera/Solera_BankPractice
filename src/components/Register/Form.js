@@ -69,7 +69,7 @@ const FormComponent = () => {
       if (response.ok) {
         localStorage.setItem("generalUserName", e.target.username.value);
         localStorage.setItem("generalPassword", e.target.password.value);
-        navigate("/principal");
+        navigate("/homepage");
       } else {
         alert("Couldn't create the user");
       }

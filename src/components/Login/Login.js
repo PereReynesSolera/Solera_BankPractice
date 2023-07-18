@@ -6,6 +6,15 @@ const LoginComponent = (props) => {
   const navigate = useNavigate();
 
   const getUsers = async (e) => {
+
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+
+    if (username === "" || password === "") {
+      alert("Username and Password must be filled");
+      return; // Stops the execution flow
+    }
+
     e.preventDefault();
     const response = await fetch(`http://10.33.146.202:9091/api/user/login`, {
       method: "POST",
@@ -20,9 +29,9 @@ const LoginComponent = (props) => {
     if (response.ok) {
       localStorage.setItem("generalUserName", e.target.username.value);
       localStorage.setItem("generalPassword", e.target.password.value);
-      navigate("/principal");
+      navigate("/homepage");
     } else {
-      alert("Couldn't_login");
+      alert("Couldn't login");
     }
   };
 
@@ -38,7 +47,7 @@ const LoginComponent = (props) => {
       <div className="login-box">
         <h2>Login</h2>
         <form onSubmit={getUsers}>
-          <div className="user-box">
+          <div className="user-box" id="inputUserContainer">
             <input
               id="inputUser"
               type="text"
@@ -47,7 +56,7 @@ const LoginComponent = (props) => {
             ></input>
             <label>Username</label>
           </div>
-          <div className="user-box">
+          <div className="user-box" id="inputPwdContainer">
             <input
               id="inputPwd"
               type="password"
