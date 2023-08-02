@@ -2,8 +2,6 @@ package com.banksolera.bank_exercice.dto.request;
 
 import lombok.*;
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
