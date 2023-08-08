@@ -13,13 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BankAccount {
-	
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	Long Id;
+    Long Id;
     String accountName;
-	String accountNum;
-	Double moneyAccount;
+    String accountNum;
+    Double moneyAccount;
 
     @ManyToOne
     private User user;
