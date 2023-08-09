@@ -1,5 +1,7 @@
 import "./Notify.css";
 
+//Remember add the animation
+
 const Notify = () => {
   return (
     <div className="notify-container">
