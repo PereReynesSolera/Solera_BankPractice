@@ -8,13 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
 	@Id
@@ -29,5 +30,4 @@ public class User {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> friends = new ArrayList<>();
-
 }

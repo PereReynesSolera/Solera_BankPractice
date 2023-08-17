@@ -1,24 +1,25 @@
 package com.banksolera.bank_exercice.controllers;
 
+import com.banksolera.bank_exercice.security.ApplicationConfig;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.banksolera.bank_exercice.dto.credentials.LoginCredentials;
 import com.banksolera.bank_exercice.dto.request.FriendRequest;
 import com.banksolera.bank_exercice.dto.response.FriendResponse;
-import com.banksolera.bank_exercice.dto.response.GetBankAccountResponse;
 import com.banksolera.bank_exercice.dto.response.GetUserResponse;
 import com.banksolera.bank_exercice.repository.InterUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import com.banksolera.bank_exercice.entities.User;
 import com.banksolera.bank_exercice.services.UserService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -30,9 +31,16 @@ public class UserController {
 	@Autowired
 	InterUserRepository userRepository;
 
+	@Autowired
+	AuthenticationManager authenticationManager;
+
+	@Autowired
+	private ApplicationConfig applicationConfig;
+
+
 	@PostMapping(path = "/register")
-	@ResponseBody
-	public ResponseEntity<?> createUser(@RequestBody User user) {
+	public ResponseEntity<?> createUser(@RequestBody User user)
+			throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchProviderException {
 		return userService.create(user);
 	}
 
@@ -51,12 +59,12 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<?> checkLogin(@RequestBody LoginCredentials loginCredentials) {
 		String userName = loginCredentials.getUserName();
-		String password = loginCredentials.getPassword();
+		CharSequence password = loginCredentials.getPassword();
 
 		User user = userService.findByUserName(userName);
 		if (user != null) {
-			if(user.getPassword().equals(password)) {
-				return ResponseEntity.ok("");
+			if(applicationConfig.matches(password, user.getPassword())) {
+				return ResponseEntity.ok(userService.login(loginCredentials, user));
 			} else {
 				ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username and password don´t match");
 			}
