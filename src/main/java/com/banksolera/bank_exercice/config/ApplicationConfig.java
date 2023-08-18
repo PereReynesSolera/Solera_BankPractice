@@ -1,8 +1,6 @@
-package com.banksolera.bank_exercice.security;
+package com.banksolera.bank_exercice.config;
 
-import com.banksolera.bank_exercice.entities.User;
 import com.banksolera.bank_exercice.repository.InterUserRepository;
-import com.banksolera.bank_exercice.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +16,6 @@ public class ApplicationConfig {
     @Autowired
     private final InterUserRepository userRepository;
 
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -29,6 +25,4 @@ public class ApplicationConfig {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
     }
-
-
 }

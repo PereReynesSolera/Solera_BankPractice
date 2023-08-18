@@ -1,6 +1,6 @@
 package com.banksolera.bank_exercice.controllers;
 
-import com.banksolera.bank_exercice.security.ApplicationConfig;
+import com.banksolera.bank_exercice.config.ApplicationConfig;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -63,7 +63,7 @@ public class UserController {
 
 		User user = userService.findByUserName(userName);
 		if (user != null) {
-			if(applicationConfig.matches(password, user.getPassword())) {
+			if(applicationConfig.matches(password, user.getPassword()))  {
 				return ResponseEntity.ok(userService.login(loginCredentials, user));
 			} else {
 				ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username and password don´t match");

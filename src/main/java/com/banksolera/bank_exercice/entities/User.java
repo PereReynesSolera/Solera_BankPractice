@@ -10,9 +10,9 @@ import lombok.*;
 
 import java.util.List;
 import java.util.ArrayList;
-
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

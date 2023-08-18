@@ -2,7 +2,7 @@ package com.banksolera.bank_exercice.services;
 
 import com.banksolera.bank_exercice.dto.credentials.LoginCredentials;
 import com.banksolera.bank_exercice.dto.response.AuthResponse;
-import com.banksolera.bank_exercice.security.ApplicationConfig;
+import com.banksolera.bank_exercice.config.ApplicationConfig;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;

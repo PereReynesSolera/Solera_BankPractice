@@ -76,5 +76,4 @@ public class InfoBankController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bank account does not exist.");
         }
     }
-
 }

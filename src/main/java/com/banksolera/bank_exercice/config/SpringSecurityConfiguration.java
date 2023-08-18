@@ -1,4 +1,4 @@
-package com.banksolera.bank_exercice.security;
+package com.banksolera.bank_exercice.config;
 
 import com.banksolera.bank_exercice.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
