@@ -9,13 +9,19 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const [accounts, setAccounts] = useState([]);
-  
+
+  const token = localStorage.getItem("generalToken");
   const getAccounts = async () => {
     try {
-      const response = await fetch(`http://10.33.146.202:9091/api/bank`, {
+        const response = await fetch(`http://localhost:9091/api/bank`, {
         method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json" // Agregar este encabezado para indicar el tipo de contenido
+        },
         body: localStorage.getItem("generalUserName"),
       });
+
       if (response.ok) {
         const finalResponse = await response.json();
         console.log(finalResponse);
@@ -30,7 +36,7 @@ const Sidebar = () => {
 
   const data = async () => {
     try {
-      const response = await fetch(`http://10.33.146.202:9091/api/user/email`, {
+        const response = await fetch(`http://localhost:9091/api/user/email`, {
         method: "POST",
         body: localStorage.getItem("generalUserName"),
       });
@@ -41,8 +47,6 @@ const Sidebar = () => {
       console.log(error);
     }
   };
-
-  
 
   const move = () => {
     navigate("/accounts");

@@ -16,7 +16,8 @@ const LoginComponent = (props) => {
     }
 
     e.preventDefault();
-    const response = await fetch(`http://10.33.146.202:9091/api/user/login`, {
+    
+    const response = await fetch(`http://localhost:9091/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,13 +28,16 @@ const LoginComponent = (props) => {
       }),
     });
     if (response.ok) {
+      const data = await response.json(); // Convertir la respuesta JSON
+      const token = data.token; // Obtener el valor del token
+      localStorage.setItem("generalToken", token);
       localStorage.setItem("generalUserName", e.target.username.value);
       localStorage.setItem("generalPassword", e.target.password.value);
       navigate("/homepage");
     } else {
       alert("Couldn't login");
     }
-  };
+  }  
 
   const travel = () => {
     navigate("/");

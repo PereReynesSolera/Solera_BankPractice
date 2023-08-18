@@ -8,19 +8,25 @@ const BankAccounts = () => {
   const [accounts, setAccounts] = useState([]);
   const [showInputs, setShowInputs] = useState(false);
   const [buttonText, setButtonText] = useState("Create Account");
+  const token = localStorage.getItem("generalToken");
 
+  console.log(token);
   const getAccounts = async () => {
     try {
-      const response = await fetch(`http://10.33.146.202:9091/api/bank`, {
+        const response = await fetch(`http://localhost:9091/api/bank`, {
         method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json" // Agregar este encabezado para indicar el tipo de contenido
+      },
         body: localStorage.getItem("generalUserName"),
       });
       if (response.ok) {
         const finalResponse = await response.json();
         setAccounts(finalResponse);
-        //console.log(finalResponse);
+        console.log(finalResponse);
       } else {
-        alert("Couldn't login");
+        alert("Couldn't retrieve accounts");
       }
     } catch (error) {
       console.log(error);
@@ -57,7 +63,7 @@ const BankAccounts = () => {
 
       try {
         const response = await fetch(
-          "http://10.33.146.202:9091/api/bank/create",
+          "http://localhost:9091/api/bank/create",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -82,7 +88,7 @@ const BankAccounts = () => {
 
   const deleteAccount = async (id) => {
     try {
-      const response = await fetch(`http://10.33.146.202:9091/api/bank/delete`, {
+        const response = await fetch(`http://localhost:9091/api/bank/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

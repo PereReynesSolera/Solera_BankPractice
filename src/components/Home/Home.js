@@ -11,7 +11,7 @@ const Home = () => {
   const getFiends = async () => {
     try {
       const response = await fetch(
-        `http://10.33.146.202:9091/api/user/friendlist`,
+        `http://localhost:9091/api/user/friendlist`,
         {
           method: "POST",
           body: localStorage.getItem("generalUserName"),
