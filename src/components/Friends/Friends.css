@@ -12,22 +12,6 @@ body {
   src: url("../Fonts/Iceland-Regular.ttf") format("truetype");
 }
 
-.headerHome {
-  padding: 0;
-  border: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  background: linear-gradient(#293d61, #243b55);
-  border-bottom: 2px solid black;
-  width: 100%;
-  height: 30%;
-  font-size: 14px;
-  font-family: "Iceland-Regular";
-}
-
 .saluditos {
   padding: 0;
   border: 0;
@@ -61,15 +45,6 @@ body {
 .saluditos div:hover {
   transform: scale(1.05);
 }
-
-.cryptotitle {
-  color: black;
-}
-
-.cryptocenter{
-    background-color: black;
-}
-
 
 .pere{
   margin: 0;

@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import BankAccounts from './components/Bank_Accounts/BankAccounts'
 import HomePage from './components/HomePage/HomePage';
 import Notifications from './components/Notifications/Notifications';
+import TransactionsPage from './components/TransactionsPage/TransactionsPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/notifications" element={<Notifications />}/>
           <Route path="/accounts" element={<BankAccounts />}/>
+          <Route path="/transaction" element={<TransactionsPage />}/>
         </Routes>
       </BrowserRouter>
     </div>

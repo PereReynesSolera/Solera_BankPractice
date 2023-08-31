@@ -10,7 +10,6 @@ const BankAccounts = () => {
   const [buttonText, setButtonText] = useState("Create Account");
   const token = localStorage.getItem("generalToken");
 
-  console.log(token);
   const getAccounts = async () => {
     try {
         const response = await fetch(`http://localhost:9091/api/bank`, {
@@ -24,7 +23,6 @@ const BankAccounts = () => {
       if (response.ok) {
         const finalResponse = await response.json();
         setAccounts(finalResponse);
-        console.log(finalResponse);
       } else {
         alert("Couldn't retrieve accounts");
       }
@@ -66,7 +64,10 @@ const BankAccounts = () => {
           "http://localhost:9091/api/bank/create",
           {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Authorization": `Bearer ${token}`, 
+              "Content-Type": "application/json" 
+            },
             body: JSON.stringify({
               accountName: accountName,
               accountNum: accountNum,
@@ -91,6 +92,7 @@ const BankAccounts = () => {
         const response = await fetch(`http://localhost:9091/api/bank/delete`, {
         method: "DELETE",
         headers: {
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -141,8 +143,8 @@ const BankAccounts = () => {
                           className="p-button"
                           key={account.accountName + index}
                         >
-                          <p>{`${account.accountName} - ${account.accountNum} - ${account.moneyAccount}`}</p>
-                          <button
+                          <p>{`${account.accountName} - ${account.accountNum} - ${account.moneyAccount}€`}</p>
+                          <button 
                             type="button"
                             className="delete"
                             onClick={() => deleteAccount(account.id)}

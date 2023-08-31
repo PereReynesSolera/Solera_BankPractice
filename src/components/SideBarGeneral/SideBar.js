@@ -24,7 +24,6 @@ const Sidebar = () => {
 
       if (response.ok) {
         const finalResponse = await response.json();
-        console.log(finalResponse);
         setAccounts(finalResponse);
       } else {
         alert("Couldn't login");
@@ -77,10 +76,9 @@ const Sidebar = () => {
 
   const sumMoney = () => {
     const totalMoney = accounts.reduce((accumulator, account) => {
-      return accumulator + account.moneyAccount;
+      return accumulator + parseFloat(account.moneyAccount); // Redondear a 2 decimales
     }, 0);
-  
-    return totalMoney; 
+    return totalMoney.toFixed(2);
   };
   
 
@@ -103,7 +101,7 @@ const Sidebar = () => {
       </div>
 
       <div className="balance">
-        <h4 className="header4">${sumMoney()}</h4> 
+        <h4 className="header4">{sumMoney()}€</h4> 
         <p>All accounts total balance</p>
       </div>
 

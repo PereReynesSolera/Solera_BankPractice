@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland&family=Lato:ital,wght@1,100&family=Roboto:ital,wght@1,300&display=swap');
 
 body {
-  padding: 0;
-  border: 0;
-  margin: 0;
+  overflow: hidden ;
   font-family: sans-serif;
+}
+
+.home-trasaction-general {
+  margin-top: 10%;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch; /* Ajusta la altura de los componentes al div padre */
 }
 
 @font-face {
@@ -12,73 +19,54 @@ body {
   src: url("../Fonts/Iceland-Regular.ttf") format("truetype");
 }
 
-.headerHome {
-  padding: 0;
-  border: 0;
-  margin: 0;
+.container-table-transaction {
+  width: 85%;
+}
+
+.side-select {
+  width: 15%;
+}
+
+.menu  {
+  border-radius:10px;
+  text-align:right;
+  font:18px arial;
+  color: #ccc;
+  position: relative;
+  box-sizing:border-box;
+  border:2px solid #ccc;
+  position: relative;
+  box-shadow: 0 0 0 6px #f1f1f1;
+ 	transition: all .3s linear;
+}
+
+.menu:hover{
+  background: #f8f6f6;
+  color: #1b1e24;
+}
+
+.menu:hover, .menu:active {
+  border-color: #BFDDF1;
+  box-shadow: rgba(212, 234, 247, 1) 0 0 7px, inset #C0D5DB 0 0 6px;
+}
+
+.menu > option{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  background: linear-gradient(#293d61, #243b55);
-  border-bottom: 2px solid black;
-  width: 100%;
-  height: 30%;
-  font-size: 14px;
-  font-family: "Iceland-Regular";
+  font-size:17px;
+  text-align:left;
+  font-family: Arial, sans-serif; /* Cambia la fuente */
+  color:#1b1e24;
 }
 
-.saluditos {
-  padding: 0;
-  border: 0;
-  margin: 0;
-  width: 100%;
-  height: 35%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 1em;
+.menu{
+  padding: 10px;
+  border-bottom:1px dotted #ccc;
+  color: #ccc; 
+  transition: all 0.3s;
 }
 
-.saluditos div {
-  text-align: center;
-  font-size: larger;
-  background-color: whitesmoke;
-  border-radius: 1em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  margin: 0;
-  border: 4px solid red;
-  height: 100%;
-  width: 25%;
-}
-
-.saluditos div:hover {
-  transform: scale(1.05);
-}
-
-.cryptotitle {
-  color: black;
-}
-
-.cryptocenter{
-    background-color: black;
-}
-
-
-.pere{
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+option:hover{
+  background: #f1f1f1;
 }
 
 .table-fill {
@@ -93,7 +81,7 @@ body {
  
 th {
   text-align: center;
-  color:#D5DDE5;;
+  color:#D5DDE5;
   background:#1b1e24;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
@@ -178,28 +166,4 @@ td {
 td:last-child {
   text-align: center;
   border-right: 0px;
-}
-
-th.text-left {
-  text-align: center;
-}
-
-th.text-center {
-  text-align: center;
-}
-
-th.text-right {
-  text-align: center;
-}
-
-td.text-left {
-  text-align: center;
-}
-
-td.text-center {
-  text-align: center;
-}
-
-td.text-right {
-  text-align: center;
 }
